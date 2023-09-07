@@ -33,7 +33,7 @@ public class Problem {
     private User user;
 
     @OneToMany(mappedBy = "problem")
-    private List<Review> reviews = new ArrayList<>();
+    private final List<Review> reviews = new ArrayList<>();
 
     @Builder
     public Problem(String type, Level level, String org, String name, String url, User user) {
