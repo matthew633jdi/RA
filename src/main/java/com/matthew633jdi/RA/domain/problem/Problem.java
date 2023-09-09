@@ -2,6 +2,7 @@ package com.matthew633jdi.RA.domain.problem;
 
 import com.matthew633jdi.RA.domain.review.Review;
 import com.matthew633jdi.RA.domain.user.User;
+import com.matthew633jdi.RA.web.dto.ProblemSaveRequestDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
@@ -52,6 +54,23 @@ public class Problem {
         user.getProblems().add(this);
     }
 
+    // 생성 메서드
+    public static Problem createProblem(ProblemSaveRequestDto dto, User user, Review... reviews) {
+        Problem problem = new Problem();
+        problem.name = dto.getName();
+        problem.type = dto.getName();
+        problem.level = Level.findByCode(dto.getLevel());
+        problem.org = dto.getName();
+        problem.url = dto.getName();
+
+        problem.user = user;
+        user.getProblems().add(problem);
+        for (Review review : reviews) {
+            problem.reviews.add(review);
+        }
+        return problem;
+    }
+
     public void changeType(String type) {
         Assert.hasText(type, "Type value must not be null");
         this.type = type;
@@ -75,5 +94,10 @@ public class Problem {
     public void changeUrl(String url) {
         Assert.hasText(url, "Url value must not be null");
         this.url = url;
+    }
+
+    public Review getLatestReview() {
+        return reviews.stream().sorted(Comparator.comparing(Review::getDate))
+                .toList().get(0);
     }
 }

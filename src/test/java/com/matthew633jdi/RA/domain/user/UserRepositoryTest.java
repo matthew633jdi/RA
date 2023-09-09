@@ -1,5 +1,6 @@
 package com.matthew633jdi.RA.domain.user;
 
+import com.matthew633jdi.RA.domain.problem.Level;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,17 @@ class UserRepositoryTest {
         // then
         assertThat(findUesr.getName()).isEqualTo(userA.getName());
     }
+
+    @Test
+    @DisplayName("Level Test")
+    void level_teste() {
+        // given
+        System.out.println(Level.findByCode("beginner"));
+        // when
+
+        // then
+
+    }
+
 
 }
