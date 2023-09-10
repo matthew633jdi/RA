@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -99,5 +100,9 @@ public class Problem {
     public Review getLatestReview() {
         return reviews.stream().sorted(Comparator.comparing(Review::getDate))
                 .toList().get(0);
+    }
+
+    public boolean hasReviews() {
+        return !CollectionUtils.isEmpty(reviews);
     }
 }

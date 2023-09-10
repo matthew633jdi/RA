@@ -26,16 +26,5 @@ class UserRepositoryTest {
         assertThat(findUesr.getName()).isEqualTo(userA.getName());
     }
 
-    @Test
-    @DisplayName("Level Test")
-    void level_teste() {
-        // given
-        System.out.println(Level.findByCode("beginner"));
-        // when
-
-        // then
-
-    }
-
 
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.Collections;
 
 @Getter
 @NoArgsConstructor
@@ -25,7 +26,9 @@ public class ProblemResponseDto {
         this.name = problem.getName();
         this.url = problem.getUrl();
         this.org = problem.getOrg();
-        this.reviewDate = problem.getLatestReview().getDate();
-        this.solved = problem.getLatestReview().getSolved();
+        if (problem.hasReviews()) {
+            this.reviewDate = problem.getLatestReview().getDate();
+            this.solved = problem.getLatestReview().getSolved();
+        }
     }
 }

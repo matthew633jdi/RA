@@ -25,7 +25,7 @@ public class ProblemApiController {
         return problemService.getProblemById(id);
     }
 
-    @GetMapping("/problem")
+    @GetMapping("/problems")
     public List<ProblemResponseDto> findAll() {
         return problemService.findAll();
     }
