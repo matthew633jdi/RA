@@ -1,6 +1,6 @@
 package com.matthew633jdi.RA.domain.problem;
 
-import com.matthew633jdi.RA.web.dto.ProblemRequestDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemRequestDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

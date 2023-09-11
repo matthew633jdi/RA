@@ -4,8 +4,9 @@ import com.matthew633jdi.RA.domain.problem.Level;
 import com.matthew633jdi.RA.domain.problem.Problem;
 import com.matthew633jdi.RA.domain.user.User;
 import com.matthew633jdi.RA.service.problem.ProblemService;
-import com.matthew633jdi.RA.web.dto.ProblemResponseDto;
-import com.matthew633jdi.RA.web.dto.ProblemSaveRequestDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemRequestDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemResponseDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemSaveRequestDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -77,9 +78,11 @@ class ProblemApiControllerTest {
 
         List<ProblemResponseDto> list = List.of(dto1, dto2);
 
-        when(problemService.findAll()).thenReturn(list);
+        ProblemRequestDto requestDto = new ProblemRequestDto();
 
-        List<ProblemResponseDto> result = problemApiController.findAll();
+        when(problemService.findProblem(requestDto)).thenReturn(list);
+
+        List<ProblemResponseDto> result = problemApiController.findByRequest(requestDto);
 
         assertThat(result.size()).isEqualTo(2);
         assertThat(result.get(0).getName()).isEqualTo(prb1.getName());

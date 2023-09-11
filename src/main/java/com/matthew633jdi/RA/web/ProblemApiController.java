@@ -3,14 +3,14 @@ package com.matthew633jdi.RA.web;
 import com.matthew633jdi.RA.service.problem.ProblemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import com.matthew633jdi.RA.web.dto.ProblemRequestDto;
-import com.matthew633jdi.RA.web.dto.ProblemResponseDto;
-import com.matthew633jdi.RA.web.dto.ProblemSaveRequestDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemRequestDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemResponseDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemSaveRequestDto;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-@RestController("/ra")
+@RestController
 public class ProblemApiController {
 
     private final ProblemService problemService;
@@ -25,13 +25,9 @@ public class ProblemApiController {
         return problemService.getProblemById(id);
     }
 
-    @GetMapping("/problems")
-    public List<ProblemResponseDto> findAll() {
-        return problemService.findAll();
-    }
 
     @GetMapping("/problems")
     public List<ProblemResponseDto> findByRequest(ProblemRequestDto problemRequestDto) {
-        return problemService.findProblemsBy(problemRequestDto);
+        return problemService.findProblem(problemRequestDto);
     }
 }

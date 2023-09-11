@@ -2,7 +2,7 @@ package com.matthew633jdi.RA.domain.problem;
 
 import com.matthew633jdi.RA.domain.review.Review;
 import com.matthew633jdi.RA.domain.user.User;
-import com.matthew633jdi.RA.web.dto.ProblemSaveRequestDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemSaveRequestDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

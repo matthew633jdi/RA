@@ -1,4 +1,4 @@
-package com.matthew633jdi.RA.web.dto;
+package com.matthew633jdi.RA.web.dto.problem;
 
 import com.matthew633jdi.RA.domain.problem.Level;
 import com.matthew633jdi.RA.domain.problem.Problem;

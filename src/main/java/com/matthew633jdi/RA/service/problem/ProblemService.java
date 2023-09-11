@@ -4,9 +4,9 @@ import com.matthew633jdi.RA.domain.problem.Problem;
 import com.matthew633jdi.RA.domain.problem.ProblemRepository;
 import com.matthew633jdi.RA.domain.user.User;
 import com.matthew633jdi.RA.domain.user.UserRepository;
-import com.matthew633jdi.RA.web.dto.ProblemRequestDto;
-import com.matthew633jdi.RA.web.dto.ProblemResponseDto;
-import com.matthew633jdi.RA.web.dto.ProblemSaveRequestDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemRequestDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemResponseDto;
+import com.matthew633jdi.RA.web.dto.problem.ProblemSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,12 +40,11 @@ public class ProblemService {
         return new ProblemResponseDto(problem);
     }
 
-    public List<ProblemResponseDto> findAll() {
-        return problemRepository.findAll().stream().map(ProblemResponseDto::new).collect(Collectors.toList());
-    }
-
-    public List<ProblemResponseDto> findProblemsBy(ProblemRequestDto problemRequestDto) {
-        return problemRepository.findByProblems(problemRequestDto).stream().map(ProblemResponseDto::new).collect(Collectors.toList());
+    public List<ProblemResponseDto> findProblem(ProblemRequestDto problemRequestDto) {
+        if (problemRequestDto.isEmpty())
+            return problemRepository.findAll().stream().map(ProblemResponseDto::new).collect(Collectors.toList());
+        else
+            return problemRepository.findByProblems(problemRequestDto).stream().map(ProblemResponseDto::new).collect(Collectors.toList());
     }
 
     private void validateDuplicateProblem(ProblemSaveRequestDto problemSaveRequestDto) {
