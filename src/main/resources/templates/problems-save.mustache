@@ -1,0 +1,45 @@
+{{>layout/header}}
+
+<h1>문제 등록</h1>
+
+<div class="col-md-12">
+    <div class="col-md-4">
+        <form>
+            <div class="form-group">
+                <label for="name">문제 이름</label>
+                <input type="text" class="form-control" id="name" placeholder="문제 이름을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="url">url</label>
+                <input type="text" class="form-control" id="url" placeholder="URL을 입력하세요">
+            </div>
+            <div class="form-group">
+                <label for="level"> 난이도 </label>
+                <select class="form-select" id="level">
+                    <option selected>난이도를 선택하세요</option>
+                    <option value="beginner">개념</option>
+                    <option value="intermediate">적용</option>
+                    <option value="advanced">실전</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="type"> 유형 </label>
+                <input type="text" class="form-control" id="type" placeholder="유형을 입력하세요"></input>
+            </div>
+            <div class="form-group">
+                <label for="org"> 출제 기관 </label>
+                <select class="form-select" id="org">
+                    <option selected>출제 기관을 선택하세요.</option>
+                    <option value="BOJ">백준</option>
+                    <option value="Programmers">프로그래머스</option>
+                    <option value="Codility">코딜리티</option>
+                    <option value="Goorm">구름</option>
+                </select>
+            </div>
+        </form>
+        <a href="/" role="button" class="btn btn-secondary">취소</a>
+        <button type="button" class="btn btn-primary" id="btn-save">등록</button>
+    </div>
+</div>
+
+{{>layout/footer}}

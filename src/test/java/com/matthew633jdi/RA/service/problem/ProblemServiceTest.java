@@ -42,7 +42,7 @@ class ProblemServiceTest {
     @DisplayName("문제등록")
     void problem_등록() {
         // given
-        User user = new User("a");
+        User user = User.builder().build();
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
         ProblemSaveRequestDto dto = ProblemSaveRequestDto.builder()
@@ -73,7 +73,7 @@ class ProblemServiceTest {
                 .level(Level.ADVANCED)
                 .url("http://boj.com/2")
                 .org("BOJ")
-                .user(new User("k")).build();
+                .user(User.builder().build()).build();
         when(problemRepository.findById(1L)).thenReturn(Optional.of(prb));
         // when
         ProblemResponseDto response = service.getProblemById(1L);

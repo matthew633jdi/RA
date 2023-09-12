@@ -3,9 +3,10 @@ package com.matthew633jdi.RA.web.dto.problem;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.util.StringUtils;
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 public class ProblemRequestDto {
     private String type;

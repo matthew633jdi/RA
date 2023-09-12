@@ -11,6 +11,7 @@ import java.util.Collections;
 @NoArgsConstructor
 public class ProblemResponseDto {
 
+    private Long id;
     private LocalDate reviewDate;
     private Boolean solved;
     private String type;
@@ -21,6 +22,7 @@ public class ProblemResponseDto {
 
 
     public ProblemResponseDto(Problem problem) {
+        this.id = problem.getId();
         this.type = problem.getType();
         this.level = problem.getLevel().getLevelValue();
         this.name = problem.getName();

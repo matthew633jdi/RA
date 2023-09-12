@@ -18,7 +18,7 @@ class UserRepositoryTest {
     @DisplayName("user 생성")
     void user_생성() {
         // given
-        User userA = new User("userA");
+        User userA = User.builder().name("userA").build();
         userRepository.save(userA);
         // when
         User findUesr = userRepository.findById(userA.getId()).orElseThrow(() -> new IllegalArgumentException("Wrong user id"));

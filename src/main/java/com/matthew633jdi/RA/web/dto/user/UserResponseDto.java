@@ -12,10 +12,12 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class UserResponseDto {
 
+    private Long id;
     private String name;
     private List<ProblemResponseDto> problems;
 
     public UserResponseDto(User user) {
+        this.id = user.getId();
         this.name = user.getName();
         this.problems = user.getProblems().stream().map(ProblemResponseDto::new).collect(Collectors.toList());
     }

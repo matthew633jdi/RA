@@ -2,11 +2,14 @@ package com.matthew633jdi.RA.service.user;
 
 import com.matthew633jdi.RA.domain.user.User;
 import com.matthew633jdi.RA.domain.user.UserRepository;
+import com.matthew633jdi.RA.web.dto.user.UserRequestDto;
 import com.matthew633jdi.RA.web.dto.user.UserResponseDto;
 import com.matthew633jdi.RA.web.dto.user.UserSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -29,9 +32,15 @@ public class UserService {
     }
 
     private void validateDuplicateUser(UserSaveRequestDto userSaveRequestDto) {
-        userRepository.findByName(userSaveRequestDto.getName())
+        userRepository.findByEmail(userSaveRequestDto.getEmail())
                 .ifPresent(u -> {
                     throw new IllegalArgumentException("이미 존재하는 회원입니다.");
                 });
+    }
+
+    public UserResponseDto findUser(UserRequestDto userRequestDto) {
+        User user = userRepository.findByEmailAndAndPassword(userRequestDto.getEmail(), userRequestDto.getPwd()).orElseThrow(() -> new IllegalArgumentException("아이디와 비밀번호를 확인하세요,"));
+        return new UserResponseDto(user);
+
     }
 }

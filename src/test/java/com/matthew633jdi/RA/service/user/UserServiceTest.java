@@ -38,10 +38,14 @@ class UserServiceTest {
     @DisplayName("회원등록")
     void user_등록() {
         // given
-        User user = new User("a");
+        User user = User.builder().name("a").email("email").password("pwd").build();
         when(userRepository.save(any(User.class))).thenReturn(user);
 
-        UserSaveRequestDto requestDto = new UserSaveRequestDto("a");
+        UserSaveRequestDto requestDto = UserSaveRequestDto.builder()
+                .name("a")
+                .email("email")
+                .pwd("pwd")
+                .build();
 
         // when
         Long registeredId = service.register(requestDto);
@@ -55,7 +59,7 @@ class UserServiceTest {
     @DisplayName("회원 조회")
     void user_조회() {
         // given
-        User userA = new User("a");
+        User userA = User.builder().build();
         Problem prb = Problem.builder()
                 .name("b1")
                 .type("Graph Search")

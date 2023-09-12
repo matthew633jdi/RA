@@ -1,0 +1,49 @@
+{{>layout/header}}
+
+<h1>R.A. Ver0.1</h1>
+<div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/problems/save" role="button" class="btn btn-primary">문제 등록</a>
+            <a href="/login" role="button" class="btn btn-primary">로그인</a>
+            <a href="/signup" role="button" class="btn btn-primary">회원가입</a>
+
+            {{#userName}}
+                Logged in as: <span id="user">{{userName}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/userName}}
+            {{^userName}}
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+            {{/userName}}
+        </div>
+    </div>
+    <br>
+    <!-- 목록 출력 영역 -->
+    <table class="table table-horizontal table-bordered">
+        <thead class="thead-strong">
+        <tr>
+            <th>문제 이름</th>
+            <th>난이도</th>
+            <th>유형</th>
+            <th>해결유/무</th>
+            <th>출제 기관</th>
+            <th>복습 날짜</th>
+        </tr>
+        </thead>
+        <tbody id="tbody">
+        {{#problems}}
+            <tr>
+                <td><a href="/problems/update/{{id}}">{{name}}</a></td>
+                <td>{{level}}</td>
+                <td>{{type}}</td>
+                <td>{{url}}</td>
+                <td>{{solved}}</td>
+                <td>{{org}}</td>
+                <td>{{reviewDate}}</td>
+            </tr>
+        {{/problems}}
+        </tbody>
+    </table>
+</div>
+
+{{>layout/footer}}

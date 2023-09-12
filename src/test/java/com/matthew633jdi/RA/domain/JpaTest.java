@@ -26,7 +26,7 @@ public class JpaTest {
     @DisplayName("User 생성 테스트")
     void user_생성() {
         // given
-        User userA = new User("userA");
+        User userA = User.builder().name("userA").build();
         em.persist(userA);
         // when
         User findUser = em.find(User.class, userA.getId());
@@ -38,7 +38,7 @@ public class JpaTest {
     @DisplayName("Problem 생성 테스트")
     void problem_생성() {
         // given
-        User userB = new User("userB");
+        User userB = User.builder().name("userB").build();
         em.persist(userB);
 
         Problem problem = Problem.builder()
@@ -63,7 +63,7 @@ public class JpaTest {
     @DisplayName("Review 생성 테스트")
     void review_생성() {
         // given
-        User userC = new User("userC");
+        User userC = User.builder().name("userC").build();
         em.persist(userC);
 
         Problem problem = Problem.builder()

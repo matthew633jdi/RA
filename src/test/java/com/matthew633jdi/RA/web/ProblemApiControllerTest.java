@@ -57,8 +57,13 @@ class ProblemApiControllerTest {
     @Test
     @DisplayName("Problem 모두 조회")
     void problem_모두조회() throws Exception {
+        User userA = User.builder()
+                .name("userA")
+                .email("email")
+                .password("pwd")
+                .build();
         Problem prb1 = Problem.builder()
-                .user(new User("userA"))
+                .user(userA)
                 .level(Level.ADVANCED)
                 .name("name test")
                 .url("http://boj.com/22")
@@ -66,7 +71,7 @@ class ProblemApiControllerTest {
                 .org("BOJ")
                 .build();
         Problem prb2 = Problem.builder()
-                .user(new User("userA"))
+                .user(userA)
                 .level(Level.INTERMEDIATE)
                 .name("name test1")
                 .url("http://boj.com/23")
