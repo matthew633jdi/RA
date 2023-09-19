@@ -23,12 +23,12 @@ public class ProblemService {
 
 
     @Transactional
-    public Long register(ProblemSaveRequestDto problemSaveRequestDto) {
+    public Long register(ProblemSaveRequestDto problemSaveRequestDto, Long userId) {
         // 중복체크
         validateDuplicateProblem(problemSaveRequestDto);
 
         // 조회
-        User user = userRepository.findById(problemSaveRequestDto.getUserId()).orElseThrow(() -> new IllegalArgumentException("Wrong User."));
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("Wrong User."));
 
         // 생성
         Problem problem = Problem.createProblem(problemSaveRequestDto, user);

@@ -28,7 +28,6 @@ var main = {
             level: $('#level').val(),
             type: $('#type').val(),
             org: $('#org').val(),
-            id: window.sessionStorage.getItem("userId")
         };
 
         $.ajax({
@@ -60,8 +59,15 @@ var main = {
         }).done(function() {
             alert('회원 가입을 축하드립니다.');
             window.location.href = '/login';
-        }).fail(function () {
-            alert('이미 등록된 회원입니다.');
+        }).fail(function (jqXHR) {
+            var response = jqXHR.responseJSON;
+            var responseMsg = '';
+
+            $.each(response.validation, function (fieldName, errorBag) {
+                responseMsg += errorBag + "\n";
+            });
+
+            alert(responseMsg);
         });
     },
     update : function () {
@@ -116,11 +122,11 @@ var main = {
             contentType:'application/json; charset=utf-8'
         }).done(function(data) {
             alert('로그인되었습니다.');
-            result = data.id;
             window.location.href = '/';
-            console.log(data);
         }).fail(function (error) {
-            alert(JSON.stringify(error));
+            var response = error.responseJSON;
+            alert(response.message);
+            // alert(JSON.stringify(error));
         });
     }
 

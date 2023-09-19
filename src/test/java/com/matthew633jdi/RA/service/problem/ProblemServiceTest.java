@@ -58,9 +58,9 @@ class ProblemServiceTest {
         when(problemRepository.save(any(Problem.class))).then(AdditionalAnswers.returnsFirstArg());
 
         // when
-        Long registeredId = service.register(dto);
+        Long registeredId = service.register(dto, 1L);
         // then
-        verify(service, times(1)).register(dto);
+        verify(service, times(1)).register(dto, 1L);
     }
     
     @Test

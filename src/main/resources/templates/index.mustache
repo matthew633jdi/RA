@@ -4,16 +4,14 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
-            <a href="/problems/save" role="button" class="btn btn-primary">문제 등록</a>
-            <a href="/login" role="button" class="btn btn-primary">로그인</a>
-            <a href="/signup" role="button" class="btn btn-primary">회원가입</a>
-
+            {{^userName}}
+                <a href="/login" role="button" class="btn btn-primary">로그인</a>
+                <a href="/signup" role="button" class="btn btn-primary">회원가입</a>
+            {{/userName}}
             {{#userName}}
+                <a href="/problems/save" role="button" class="btn btn-primary">문제 등록</a>
                 Logged in as: <span id="user">{{userName}}</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/userName}}
-            {{^userName}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
             {{/userName}}
         </div>
     </div>
@@ -25,6 +23,7 @@
             <th>문제 이름</th>
             <th>난이도</th>
             <th>유형</th>
+            <th>URL</th>
             <th>해결유/무</th>
             <th>출제 기관</th>
             <th>복습 날짜</th>
@@ -37,9 +36,9 @@
                 <td>{{level}}</td>
                 <td>{{type}}</td>
                 <td>{{url}}</td>
-                <td>{{solved}}</td>
+                <td>{{#solved}}{{solved}}{{/solved}}{{^solved}}False{{/solved}}</td>
                 <td>{{org}}</td>
-                <td>{{reviewDate}}</td>
+                <td>{{#reviewDate}}{{reviewDate}}{{/reviewDate}}{{^reviewDate}}Empty{{/reviewDate}}</td>
             </tr>
         {{/problems}}
         </tbody>

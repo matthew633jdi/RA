@@ -59,10 +59,10 @@ public class Problem {
     public static Problem createProblem(ProblemSaveRequestDto dto, User user, Review... reviews) {
         Problem problem = new Problem();
         problem.name = dto.getName();
-        problem.type = dto.getName();
+        problem.type = dto.getType();
         problem.level = Level.findByCode(dto.getLevel());
-        problem.org = dto.getName();
-        problem.url = dto.getName();
+        problem.org = dto.getOrg();
+        problem.url = dto.getUrl();
 
         problem.user = user;
         user.getProblems().add(problem);

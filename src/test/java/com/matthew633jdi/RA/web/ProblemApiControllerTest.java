@@ -7,13 +7,16 @@ import com.matthew633jdi.RA.service.problem.ProblemService;
 import com.matthew633jdi.RA.web.dto.problem.ProblemRequestDto;
 import com.matthew633jdi.RA.web.dto.problem.ProblemResponseDto;
 import com.matthew633jdi.RA.web.dto.problem.ProblemSaveRequestDto;
+import com.matthew633jdi.RA.web.dto.user.UserResponseDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -21,6 +24,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -32,13 +36,19 @@ class ProblemApiControllerTest {
     @Mock
     ProblemService problemService;
 
+    @Mock
+    MockHttpSession session;
+
     @Test
     @DisplayName("Problem 생성")
     void problem_생성() throws Exception {
         MockHttpServletRequest request = new MockHttpServletRequest();
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        UserResponseDto user = new UserResponseDto();
 
-        when(problemService.register(any(ProblemSaveRequestDto.class))).thenReturn(1L);
+        session.setAttribute("user", user);
+
+        when(problemService.register(any(ProblemSaveRequestDto.class), anyLong())).thenReturn(1L);
 
         ProblemSaveRequestDto dto = ProblemSaveRequestDto.builder()
                 .userId(1L)
